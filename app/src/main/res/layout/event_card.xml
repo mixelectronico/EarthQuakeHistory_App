@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0.7dp"
+    app:cardMaxElevation="1dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/lightgray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30sp"
+            android:id="@+id/card_reference"
+            android:text="@string/referencia"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/title"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70sp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/card_magnitud"
+                    android:text="@string/magnitud"
+                    android:textAlignment="center"
+                    android:textSize="40sp"
+                    android:textColor="@color/Magnitude"/>
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/card_agencia"
+                    android:text="@string/agencia"
+                    android:textAlignment="center"
+                    android:textColor="@color/grayed"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/latitud"
+                    android:textAlignment="center"
+                    android:id="@+id/card_latitud"
+                    android:textSize="18sp"
+                    android:textColor="@color/data"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/longitud"
+                    android:textAlignment="center"
+                    android:id="@+id/card_longitud"
+                    android:textSize="18sp"
+                    android:textColor="@color/data"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profundidad"
+                    android:textAlignment="center"
+                    android:id="@+id/card_profundidad"
+                    android:textSize="18sp"
+                    android:textColor="@color/data"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Earthquake History APP</string>
+    <string name="referencia">Referencia del evento</string>
+    <string name="magnitud">Magnitud</string>
+    <string name="agencia">Agencia</string>
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
+    <string name="profundidad">Profundidad</string>
+</resources>
