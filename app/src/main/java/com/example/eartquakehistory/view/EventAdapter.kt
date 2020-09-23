@@ -28,6 +28,7 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
         holder.latitudeTV.text = "Latitud: "+selectedEvent.Latitud
         holder.longitudeTV.text = "Longitud: "+selectedEvent.Longitud
         holder.deepnesTV.text = "Profundidad: "+selectedEvent.Profundidad
+        holder.dateTV.text = selectedEvent.Fecha
     }
 
     override fun getItemCount(): Int {
@@ -41,5 +42,6 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
         var latitudeTV = itemview.card_latitud
         var longitudeTV = itemview.card_longitud
         var deepnesTV = itemview.card_profundidad
+        var dateTV = itemview.card_fecha
     }
 }

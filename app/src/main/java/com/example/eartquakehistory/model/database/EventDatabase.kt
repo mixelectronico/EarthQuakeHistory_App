@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.eartquakehistory.model.EarthQuake
 
 @Database(entities = [EarthQuake::class], version = 1)
+@TypeConverters(DateTimeConverters::class)
 abstract class EventDatabase : RoomDatabase() {
     abstract fun daoEvent() : DaoEvent
     companion object{

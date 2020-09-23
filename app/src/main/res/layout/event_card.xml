@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="140dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="12dp"
     app:cardElevation="0.7dp"
@@ -89,5 +89,15 @@
 
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha_y_hora_del_evento"
+            android:textAlignment="center"
+            android:id="@+id/card_fecha"
+            android:textSize="18sp"
+            android:textColor="@color/DarkGreen"/>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

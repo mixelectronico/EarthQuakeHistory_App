@@ -6,4 +6,5 @@
     <string name="latitud">Latitud</string>
     <string name="longitud">Longitud</string>
     <string name="profundidad">Profundidad</string>
+    <string name="fecha_y_hora_del_evento">Fecha y Hora del Evento</string>
 </resources>
