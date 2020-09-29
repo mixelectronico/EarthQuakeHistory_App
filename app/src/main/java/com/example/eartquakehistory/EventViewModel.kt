@@ -31,8 +31,7 @@ class EventViewModel(application: Application): AndroidViewModel(application) {
         repository.setLastViewedTimeInSharedPreferences()
     }
 
-    fun checkLastDate():Boolean{
-        return repository.isLastEventLaterThanLastSeen()
+    fun startNotificationChannel(){
+        repository.createNotificationChannel()
     }
-
 }

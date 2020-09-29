@@ -1,8 +1,13 @@
 package com.example.eartquakehistory.view
 
+import android.app.Application
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eartquakehistory.R
 import com.example.eartquakehistory.model.EarthQuake
@@ -35,6 +40,10 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
         return listOfEvents.size
     }
 
+    interface OnEventClickListener{
+        fun onEventClick(event: EarthQuake)
+    }
+
     class EventViewHolder(itemview : View): RecyclerView.ViewHolder(itemview){
         var referenceTV = itemview.card_reference
         var magnitudeTV = itemview.card_magnitud
@@ -45,3 +54,9 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
         var dateTV = itemview.card_fecha
     }
 }
+//
+//// Creates an Intent that will load a map of San Francisco
+//val gmmIntentUri = Uri.parse("geo:${event.Latitud},${event.Longitud}")
+//val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+//mapIntent.setPackage("com.google.android.apps.maps")
+//startActivity(itemView.context, mapIntent,null)
