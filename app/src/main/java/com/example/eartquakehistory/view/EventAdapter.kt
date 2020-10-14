@@ -1,19 +1,18 @@
 package com.example.eartquakehistory.view
 
-import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eartquakehistory.R
 import com.example.eartquakehistory.model.EarthQuake
 import kotlinx.android.synthetic.main.event_card.view.*
 
-class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<EventAdapter.EventViewHolder>(){
 
     fun updateData(newListOfEvents : List<EarthQuake>){
         listOfEvents = newListOfEvents
@@ -34,14 +33,13 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
         holder.longitudeTV.text = "Longitud: "+selectedEvent.Longitud
         holder.deepnesTV.text = "Profundidad: "+selectedEvent.Profundidad
         holder.dateTV.text = selectedEvent.Fecha
+        holder.itemView.setOnClickListener {
+            showLocation(selectedEvent, holder.itemView.context)
+        }
     }
 
     override fun getItemCount(): Int {
         return listOfEvents.size
-    }
-
-    interface OnEventClickListener{
-        fun onEventClick(event: EarthQuake)
     }
 
     class EventViewHolder(itemview : View): RecyclerView.ViewHolder(itemview){
@@ -53,10 +51,12 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
         var deepnesTV = itemview.card_profundidad
         var dateTV = itemview.card_fecha
     }
+
+    fun showLocation(event: EarthQuake, context: Context){
+        //Creates an Intent that will load a map of the point you pass
+        val gmmIntentUri = Uri.parse("geo:${event.Latitud},${event.Longitud}?z=15")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(context,mapIntent,null)
+    }
 }
-//
-//// Creates an Intent that will load a map of San Francisco
-//val gmmIntentUri = Uri.parse("geo:${event.Latitud},${event.Longitud}")
-//val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-//mapIntent.setPackage("com.google.android.apps.maps")
-//startActivity(itemView.context, mapIntent,null)

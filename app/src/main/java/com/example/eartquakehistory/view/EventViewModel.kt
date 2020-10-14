@@ -1,4 +1,4 @@
-package com.example.eartquakehistory
+package com.example.eartquakehistory.view
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -29,6 +29,7 @@ class EventViewModel(application: Application): AndroidViewModel(application) {
 
     fun saveLastViewedEvents(){
         repository.setLastViewedTimeInSharedPreferences()
+        repository.setLastNotificationTimeInSharedPreferences()
     }
 
     fun startNotificationChannel(){

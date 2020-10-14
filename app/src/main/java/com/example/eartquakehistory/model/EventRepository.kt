@@ -44,6 +44,13 @@ class EventRepository(context: Context) {
         }
     }
 
+    fun setLastNotificationTimeInSharedPreferences(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val dateAsLong = db.daoEvent().getLastDateEvent()
+            mSharedPreferences.edit().putLong("lastNotificationDate",dateAsLong).apply()
+        }
+    }
+
     fun bringListOfEventsToViewModel(): LiveData<List<EarthQuake>>{
         return listOfEvents
     }
@@ -74,13 +81,13 @@ class EventRepository(context: Context) {
 
     fun compareDates(lastEvent: EarthQuake){
         val lastEventDate = lastEvent.realDate
-        Log.d("CHEQUEOFECHA", "Fecha Real Extraida: "+lastEventDate)
         val lastEventDateAsLong = lastEventDate.atZone(ZoneOffset.UTC).toInstant().toEpochMilli()
-        Log.d("CHEQUEOFECHA", "Fecha Real en formato LONG: "+lastEventDateAsLong.toString())
+        val lastNotificatedEventDate = mSharedPreferences.getLong("lastNotificationDate", lastEventDateAsLong)
         val lastSeenEventDate = mSharedPreferences.getLong("lastSeenDate", lastEventDateAsLong)
-        if (lastEventDateAsLong!! > lastSeenEventDate){
+        val unseenEvents = db.daoEvent().getUnseenEvents(lastSeenEventDate)
+        if (lastEventDateAsLong!! > lastNotificatedEventDate){
             Log.d("CHEQUEOFECHA", "SE ACTIVA LA NOTIFICACION")
-            activateNotification()
+            activateNotification(unseenEvents)
         }else{
             Log.d("CHEQUEOFECHA", "NO SE ACTIVA LA NOTIFICACION")
         }
@@ -100,7 +107,8 @@ class EventRepository(context: Context) {
         }
     }
 
-    fun activateNotification(){
+    fun activateNotification(unseenEvents: List<EarthQuake>){
+        setLastNotificationTimeInSharedPreferences()
         val context = thisContext.applicationContext
         //Set the intent to create this activity when notification is pushed.
         val intent = Intent(context, MainActivity::class.java).apply {
@@ -111,9 +119,10 @@ class EventRepository(context: Context) {
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_new_event)
             .setContentTitle("Nuevos Eventos")
-            .setContentText("Tienes nuevos eventos registrados")
+            .setContentText("Tienes ${unseenEvents.size} nuevos eventos registrados")
             .setStyle(
-                NotificationCompat.BigTextStyle().bigText("El ultimo evento registrado ocurrió con una magnitud de a una profundidad de "))
+                NotificationCompat.BigTextStyle().bigText("El ultimo evento registrado ocurrió a ${unseenEvents[0].RefGeografica}" +
+                        " con una magnitud de ${unseenEvents[0].Magnitud} a una profundidad de ${unseenEvents[0].Profundidad}"))
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 

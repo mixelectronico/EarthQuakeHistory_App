@@ -21,4 +21,7 @@ interface DaoEvent {
 
     @Query("SELECT MAX(realDate) FROM eventdatabase")
     fun getLastDateEvent(): Long
+
+    @Query("SELECT * FROM eventdatabase WHERE realDate >= :lastSeenDate ORDER BY realDate DESC")
+    fun getUnseenEvents(lastSeenDate: Long): List<EarthQuake>
 }
