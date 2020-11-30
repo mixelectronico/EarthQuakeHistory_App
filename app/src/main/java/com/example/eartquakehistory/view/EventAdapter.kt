@@ -26,13 +26,14 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
 
     override fun onBindViewHolder(holder: EventAdapter.EventViewHolder, position: Int) {
         val selectedEvent = listOfEvents[position]
+            val selectedDate = selectedEvent.realDate
         holder.referenceTV.text = selectedEvent.RefGeografica
         holder.magnitudeTV.text = selectedEvent.Magnitud
-        holder.agencyTV.text = "Agencia: "+selectedEvent.Agencia
         holder.latitudeTV.text = "Latitud: "+selectedEvent.Latitud
         holder.longitudeTV.text = "Longitud: "+selectedEvent.Longitud
         holder.deepnesTV.text = "Profundidad: "+selectedEvent.Profundidad
-        holder.dateTV.text = selectedEvent.Fecha
+        holder.dateTV.text = "${selectedDate.dayOfWeek} ${selectedDate.dayOfMonth} de " +
+                "${selectedDate.month} a las ${selectedDate.hour}:${selectedDate.minute}"
         holder.itemView.setOnClickListener {
             showLocation(selectedEvent, holder.itemView.context)
         }
@@ -45,7 +46,6 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
     class EventViewHolder(itemview : View): RecyclerView.ViewHolder(itemview){
         var referenceTV = itemview.card_reference
         var magnitudeTV = itemview.card_magnitud
-        var agencyTV = itemview.card_agencia
         var latitudeTV = itemview.card_latitud
         var longitudeTV = itemview.card_longitud
         var deepnesTV = itemview.card_profundidad
@@ -54,7 +54,7 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
 
     fun showLocation(event: EarthQuake, context: Context){
         //Creates an Intent that will load a map of the point you pass
-        val gmmIntentUri = Uri.parse("geo:${event.Latitud},${event.Longitud}?z=15")
+        val gmmIntentUri = Uri.parse("geo:${event.Latitud},${event.Longitud}?z=9")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         mapIntent.setPackage("com.google.android.apps.maps")
         startActivity(context,mapIntent,null)

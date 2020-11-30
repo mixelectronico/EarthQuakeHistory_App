@@ -7,4 +7,13 @@
     <string name="longitud">Longitud</string>
     <string name="profundidad">Profundidad</string>
     <string name="fecha_y_hora_del_evento">Fecha y Hora del Evento</string>
+    <string name="about_menu_title">Acerca de la aplicación</string>
+    <string name="acerca_de_earthquake_history">Acerca de EarthQuake History</string>
+    <string name="author_name_var">Autor de la aplicación: </string>
+    <string name="author_name">David Mix Fuentes</string>
+    <string name="author_email">mixelectronico@gmail.com</string>
+    <string name="author_email_var">Contacto: </string>
+    <string name="ya_lo_v">Ya lo ví</string>
+    <string name="autor_de_los_iconos">Autor de los Iconos:</string>
+    <string name="freepik">Freepik</string>
 </resources>

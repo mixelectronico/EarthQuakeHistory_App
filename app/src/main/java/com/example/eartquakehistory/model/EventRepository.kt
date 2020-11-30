@@ -117,7 +117,7 @@ class EventRepository(context: Context) {
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0,intent,0)
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_new_event)
+            .setSmallIcon(R.drawable.ic_terremoto_registro_black)
             .setContentTitle("Nuevos Eventos")
             .setContentText("Tienes ${unseenEvents.size} nuevos eventos registrados")
             .setStyle(
