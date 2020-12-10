@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eartquakehistory.R
 import com.example.eartquakehistory.model.EarthQuake
 import kotlinx.android.synthetic.main.event_card.view.*
+import java.time.format.DateTimeFormatter
 
 class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<EventAdapter.EventViewHolder>(){
 
