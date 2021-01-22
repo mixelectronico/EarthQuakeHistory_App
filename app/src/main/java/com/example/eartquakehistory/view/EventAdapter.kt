@@ -11,9 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eartquakehistory.R
 import com.example.eartquakehistory.model.EarthQuake
 import kotlinx.android.synthetic.main.event_card.view.*
+import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.util.*
 
 class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<EventAdapter.EventViewHolder>(){
+
+
 
     fun updateData(newListOfEvents : List<EarthQuake>){
         listOfEvents = newListOfEvents
@@ -26,15 +32,18 @@ class EventAdapter(var listOfEvents : List<EarthQuake>): RecyclerView.Adapter<Ev
     }
 
     override fun onBindViewHolder(holder: EventAdapter.EventViewHolder, position: Int) {
+
+        val spanishLocale = Locale("es", "CL")
         val selectedEvent = listOfEvents[position]
-            val selectedDate = selectedEvent.realDate
+        val selectedDate = selectedEvent.realDate
         holder.referenceTV.text = selectedEvent.RefGeografica
         holder.magnitudeTV.text = selectedEvent.Magnitud
         holder.latitudeTV.text = "Latitud: "+selectedEvent.Latitud
         holder.longitudeTV.text = "Longitud: "+selectedEvent.Longitud
         holder.deepnesTV.text = "Profundidad: "+selectedEvent.Profundidad
-        holder.dateTV.text = "${selectedDate.dayOfWeek} ${selectedDate.dayOfMonth} de " +
-                "${selectedDate.month} a las ${selectedDate.hour}:${selectedDate.minute}"
+        holder.dateTV.text = "${selectedDate.dayOfWeek.getDisplayName(TextStyle.FULL, spanishLocale).capitalize()} ${selectedDate.dayOfMonth} " +
+                "de ${selectedDate.month.getDisplayName(TextStyle.FULL, spanishLocale)} a las " +
+                "${selectedDate.hour}:${selectedDate.minute}"
         holder.itemView.setOnClickListener {
             showLocation(selectedEvent, holder.itemView.context)
         }
